@@ -97,6 +97,6 @@ public class TrelloClientTest {
         //When
 
         //Then
-        assertNotNull(trelloClient.getTrelloBoards());
+        assertEquals(0, trelloClient.getTrelloBoards().size());
     }
 }
