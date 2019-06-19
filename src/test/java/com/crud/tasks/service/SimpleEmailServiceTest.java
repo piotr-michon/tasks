@@ -22,18 +22,14 @@ public class SimpleEmailServiceTest {
     @Test
     public void shouldSendEmail() {
         //Given
-        Mail mail = new Mail("test@test.com", "test2@test.com","Test", "Test message");
+        Mail mail = new Mail("test@test.com", "","Test", "Test message");
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        if (mail.getToCc() == null || mail.getToCc() == "") {
-            mailMessage.setTo(mail.getMailTo());
-            mailMessage.setSubject(mail.getSubject());
-            mailMessage.setText(mail.getMessage());
-        } else {
-            mailMessage.setTo(mail.getMailTo());
+        mailMessage.setTo(mail.getMailTo());
+        mailMessage.setSubject(mail.getSubject());
+        mailMessage.setText(mail.getMessage());
+        if (mail.getToCc() != null && !mail.getToCc().equals("")) {
             mailMessage.setCc(mail.getToCc());
-            mailMessage.setSubject(mail.getSubject());
-            mailMessage.setText(mail.getMessage());
         }
         //When
         simpleEmailService.send(mail);

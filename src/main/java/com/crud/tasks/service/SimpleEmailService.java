@@ -29,16 +29,13 @@ public class SimpleEmailService {
 
     private SimpleMailMessage createMailMessage(final Mail mail) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        if (mail.getToCc() == null || mail.getToCc() == "") {
-            mailMessage.setTo(mail.getMailTo());
-            mailMessage.setSubject(mail.getSubject());
-            mailMessage.setText(mail.getMessage());
-            return mailMessage;
-        }
         mailMessage.setTo(mail.getMailTo());
-        mailMessage.setCc(mail.getToCc());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
+        if (mail.getToCc() == null || mail.getToCc().equals("")) {
+            return mailMessage;
+        }
+        mailMessage.setCc(mail.getToCc());
         return mailMessage;
     }
 }
