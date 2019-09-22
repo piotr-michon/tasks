@@ -51,7 +51,13 @@ public class MailCreatorService {
         functionality.add("Application allows sending tasks to Trello");
 
         Context context = new Context();
-
+        context.setVariable("message", message);
+        context.setVariable("tasks_url", "http://localhost:9090/crud");
+        context.setVariable("button", "Check your tasks!");
+        context.setVariable("company_config", companyConfig);
+        context.setVariable("show_button", false);
+        context.setVariable("admin_config", adminConfig);
+        context.setVariable("application_functionality", functionality);
         return templateEngine.process("mail/amount-of-trello-tasks-mail", context);
     }
 }
